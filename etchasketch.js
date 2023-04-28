@@ -1,10 +1,30 @@
 const gridContainer = document.querySelector('#gridContainer');
+const dimensionsButton = document.querySelector('#dimensionsButton');
+let gridDimensions = 16;
+let pixelWidth = 5;
 
-for (let i = 0; i < 256; i++) {
-    const newPixel = document.createElement('div');
-    newPixel.classList.add('pixel');
-    newPixel.addEventListener('mouseover', draw);
-    gridContainer.appendChild(newPixel);
+dimensionsButton.addEventListener('click', updateDimensions);
+
+function updateDimensions() {
+    do {
+        gridDimensions = prompt("enter a new dimension (must be 100 or lower):");
+    } while (gridDimensions > 100);
+    pixelWidth = 80/gridDimensions;
+    removeAllChildNodes(gridContainer);
+    for (let i = 0; i < gridDimensions*gridDimensions; i++) {
+        const newPixel = document.createElement('div');
+        newPixel.classList.add('pixel');
+        newPixel.addEventListener('mouseover', draw);
+        newPixel.style.width = pixelWidth + "vw";
+        newPixel.style.height = pixelWidth + "vw";
+        gridContainer.appendChild(newPixel);
+    }
+}
+
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
 }
 
 function draw() {
