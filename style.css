@@ -6,9 +6,18 @@ body {
     align-items: center;
 }
 
+#bodyContent {
+    display:flex;
+}
+
 h1 {
     color: lightgray;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+#options {
+    display:flex;
+    flex-direction:column;
 }
 
 #gridContainer {
@@ -16,7 +25,7 @@ h1 {
     background-color: lightgray;
     display: flex;
     flex-wrap: wrap;
-    width: 80vw;
+    width: 50vw;
 }
 
 .pixel {

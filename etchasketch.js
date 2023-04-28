@@ -1,9 +1,12 @@
 const GRID_CONTAINER = document.querySelector('#gridContainer');
-const DIMENSIONS_BUTTON = document.querySelector('#dimensionsButton');
+const GRID_CONTAINER_VW = 50;
+const dimensionsButton = document.querySelector('#dimensionsButton');
+const shadingButton = document.querySelector('#shadingButton');
+const defaultButton = document.querySelector('#defaultButton');
 let gridDimensions = 16;
-let pixelWidth = 5;
+let drawMode = "Default Mode";
 
-dimensionsButton.addEventListener('click', updateDimensions);
+
 
 function updateDimensions() {
     do {
@@ -12,8 +15,12 @@ function updateDimensions() {
     newSketch(gridDimensions);
 }
 
+function updateDrawMode() {
+    drawMode = this.textContent;
+}
+
 function newSketch(gridDimensions) {
-    pixelWidth = 80/gridDimensions;
+    pixelWidth = GRID_CONTAINER_VW/gridDimensions;
     removeAllChildNodes(gridContainer);
     for (let i = 0; i < gridDimensions*gridDimensions; i++) {
         const newPixel = document.createElement('div');
@@ -33,8 +40,20 @@ function removeAllChildNodes(parent) {
 }
 
 function draw() {
-    this.style.opacity = +this.style.opacity + .1;
-    console.log(this.style.opacity);
+    console.log("drawMode: " + drawMode);
+    switch (drawMode) {
+        case "Shading Mode":
+            this.style.opacity = +this.style.opacity + .1;
+            break;
+        case "Default Mode":
+            this.style.opacity = 1;
+            break;
+    }
+    
 }
+
+dimensionsButton.addEventListener('click', updateDimensions);
+shadingButton.addEventListener('click', updateDrawMode);
+defaultButton.addEventListener('click', updateDrawMode);
 
 newSketch(16);
