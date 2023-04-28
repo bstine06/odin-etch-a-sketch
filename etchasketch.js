@@ -1,5 +1,5 @@
-const gridContainer = document.querySelector('#gridContainer');
-const dimensionsButton = document.querySelector('#dimensionsButton');
+const GRID_CONTAINER = document.querySelector('#gridContainer');
+const DIMENSIONS_BUTTON = document.querySelector('#dimensionsButton');
 let gridDimensions = 16;
 let pixelWidth = 5;
 
@@ -9,6 +9,10 @@ function updateDimensions() {
     do {
         gridDimensions = prompt("enter a new dimension (must be 100 or lower):");
     } while (gridDimensions > 100);
+    newSketch(gridDimensions);
+}
+
+function newSketch(gridDimensions) {
     pixelWidth = 80/gridDimensions;
     removeAllChildNodes(gridContainer);
     for (let i = 0; i < gridDimensions*gridDimensions; i++) {
@@ -30,3 +34,5 @@ function removeAllChildNodes(parent) {
 function draw() {
     this.classList.add('drawn');
 }
+
+newSketch(16);
