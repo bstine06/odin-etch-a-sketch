@@ -1,0 +1,14 @@
+body {
+    margin: 2vw;
+}
+
+#gridContainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.pixel {
+    background-color: black;
+    width:6vw;
+    height:6vw;
+}
