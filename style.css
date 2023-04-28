@@ -13,17 +13,19 @@ h1 {
 
 #gridContainer {
     border: 1vw red solid;
+    background-color: lightgray;
     display: flex;
     flex-wrap: wrap;
     width: 80vw;
 }
 
 .pixel {
-    background-color: lightgray;
+    opacity: 100%;
+    background-color: black;
     width:5vw;
     height:5vw;
 }
 
 .drawn {
-    background-color: black
+    background-color: black;
 }

@@ -7,8 +7,8 @@ dimensionsButton.addEventListener('click', updateDimensions);
 
 function updateDimensions() {
     do {
-        gridDimensions = prompt("enter a new dimension (must be 100 or lower):");
-    } while (gridDimensions > 100);
+        gridDimensions = prompt("enter a new dimension (must be a number between 1 and 100):");
+    } while (gridDimensions > 100 || gridDimensions < 1 || isNaN(gridDimensions));
     newSketch(gridDimensions);
 }
 
@@ -21,6 +21,7 @@ function newSketch(gridDimensions) {
         newPixel.addEventListener('mouseover', draw);
         newPixel.style.width = pixelWidth + "vw";
         newPixel.style.height = pixelWidth + "vw";
+        newPixel.style.opacity = "0";
         gridContainer.appendChild(newPixel);
     }
 }
@@ -32,7 +33,8 @@ function removeAllChildNodes(parent) {
 }
 
 function draw() {
-    this.classList.add('drawn');
+    this.style.opacity = +this.style.opacity + .1;
+    console.log(this.style.opacity);
 }
 
 newSketch(16);
