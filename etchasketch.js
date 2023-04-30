@@ -1,9 +1,8 @@
 const GRID_CONTAINER = document.querySelector('#gridContainer');
 const GRID_CONTAINER_VW = 50;
 const dimensionsButton = document.querySelector('#dimensionsButton');
-const shadingButton = document.querySelector('#shadingButton');
-const defaultButton = document.querySelector('#defaultButton');
-const rainbowButton = document.querySelector('#rainbowButton');
+const modeButtons = document.querySelectorAll('.modeSelection');
+const dimensionsSlider = document.querySelector('#dimensionsSlider');
 let gridDimensions = 16;
 let drawMode = "Default Mode";
 
@@ -60,12 +59,15 @@ function draw() {
             console.log(randomRGB);
             this.style.backgroundColor = randomRGB;
             break;
+        case "Erase Mode":
+            this.style.opacity = 0;
+            break;
     }
 }
 
 dimensionsButton.addEventListener('click', updateDimensions);
-shadingButton.addEventListener('click', updateDrawMode);
-defaultButton.addEventListener('click', updateDrawMode);
-rainbowButton.addEventListener('click', updateDrawMode);
+for (let modeButton of modeButtons) {
+    modeButton.addEventListener('click', updateDrawMode);
+}
 
 newSketch(16);
