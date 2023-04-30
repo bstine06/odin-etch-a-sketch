@@ -1,6 +1,5 @@
 const GRID_CONTAINER = document.querySelector('#gridContainer');
 const GRID_CONTAINER_VW = 50;
-const dimensionsButton = document.querySelector('#dimensionsButton');
 const modeButtons = document.querySelectorAll('.modeSelection');
 const dimensionsSlider = document.querySelector('#dimensionsSlider');
 let gridDimensions = 16;
@@ -13,11 +12,17 @@ function updateDimensions() {
     newSketch(gridDimensions);
 }
 
+//should be called by an element with a this.value describing new grid dimensions
+function confirmErasure() {
+    confirm("Are you sure you want to update the grid dimensions? This will erase your current sketch.");
+    newSketch(this.value); 
+}
+
 function updateDrawMode() {
     drawMode = this.textContent;
 }
 
-function newSketch(gridDimensions) {
+function newSketch(gridDimensions = 16) {
     pixelWidth = GRID_CONTAINER_VW/gridDimensions;
     removeAllChildNodes(GRID_CONTAINER);
     for (let i = 0; i < gridDimensions*gridDimensions; i++) {
@@ -65,9 +70,9 @@ function draw() {
     }
 }
 
-dimensionsButton.addEventListener('click', updateDimensions);
 for (let modeButton of modeButtons) {
     modeButton.addEventListener('click', updateDrawMode);
 }
+dimensionsSlider.addEventListener('change', confirmErasure);
 
 newSketch(16);
